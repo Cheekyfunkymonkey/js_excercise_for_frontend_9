@@ -53,10 +53,6 @@
   //   - 無し
   // - 戻り値
   //   - 無し
-  async function throwError() {
-    throw new Error();
-  }
-
   async function fetchQuizData() {
     question.textContent = "Now loading...";
     result.textContent = "";
