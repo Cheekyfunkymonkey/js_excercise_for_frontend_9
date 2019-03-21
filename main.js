@@ -53,20 +53,27 @@
   //   - 無し
   // - 戻り値
   //   - 無し
+  async function throwError() {
+    throw new Error();
+  }
 
   async function fetchQuizData() {
     question.textContent = "Now loading...";
     result.textContent = "";
     restartButton.hidden = true;
 
-    const quizData = await fetch(API_URL);
-    const quizObj = await quizData.json();
+    try {
+      const quizData = await fetch(API_URL);
+      const quizObj = await quizData.json();
 
-    gameState.quizzes = quizObj.results;
-    gameState.currentIndex = 0;
-    gameState.combinedAnswers = 0;
+      gameState.quizzes = quizObj.results;
+      gameState.currentIndex = 0;
+      gameState.combinedAnswers = 0;
 
-    setNextQuiz();
+      setNextQuiz();
+    } catch (error) {
+      alert(`データの取得に失敗しました。エラー：${error.message}`);
+    }
   }
 
   // setNextQuiz関数を実装する
